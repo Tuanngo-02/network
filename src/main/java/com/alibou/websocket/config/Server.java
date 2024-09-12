@@ -18,7 +18,7 @@ import javax.swing.JTextField;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+//giao thức TCP client server
 public class Server extends JFrame implements Runnable {
 
     private static final long serialVersionUID = 1L;

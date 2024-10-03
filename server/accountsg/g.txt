@@ -1,0 +1,2 @@
+g:
+"Thank you for using this service."

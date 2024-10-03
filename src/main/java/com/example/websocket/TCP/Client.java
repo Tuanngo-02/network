@@ -1,4 +1,4 @@
-package com.alibou.websocket.config;
+package com.example.websocket.TCP;
 
 import java.awt.EventQueue;
 import java.io.DataInputStream;
@@ -15,8 +15,9 @@ import javax.swing.JTextField;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.UnknownHostException;
 
-public class Client_2 extends JFrame {
+public class Client extends JFrame {
 
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
@@ -28,10 +29,10 @@ public class Client_2 extends JFrame {
     private DataOutputStream output;
     private DataInputStream input;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws UnknownHostException {
         EventQueue.invokeLater(() -> {
             try {
-                Client_2 frame = new Client_2();
+                Client frame = new Client();
                 frame.setVisible(true);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -39,7 +40,7 @@ public class Client_2 extends JFrame {
         });
     }
 
-    public Client_2() {
+    public Client() {
         model = new DefaultListModel<>();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 641, 495);
@@ -52,7 +53,7 @@ public class Client_2 extends JFrame {
         contentPane.add(panel);
         panel.setLayout(null);
 
-        JLabel id_client = new JLabel("CLIENT 2");
+        JLabel id_client = new JLabel("CLIENT");
         id_client.setFont(new Font("Tahoma", Font.PLAIN, 32));
         id_client.setBounds(25, 4, 159, 39);
         panel.add(id_client);
@@ -107,11 +108,12 @@ public class Client_2 extends JFrame {
 
     private void connectToServer() {
         try {
-            model.addElement("Client 2 connecting...");
+            model.addElement("Client connecting...");
             lsHistory.setModel(model);
-            socket = new Socket("25.3.237.134", Integer.parseInt(port.getText()));
+            socket = new Socket("25.3.237.134",Integer.parseInt(port.getText()));
             output = new DataOutputStream(socket.getOutputStream());
             input = new DataInputStream(socket.getInputStream());
+
 
             // Start a thread to listen for messages from the server
             Thread serverListenerThread = new Thread(() -> {
@@ -128,7 +130,7 @@ public class Client_2 extends JFrame {
             });
             serverListenerThread.start();
 
-            model.addElement("Client 2 is connected");
+            model.addElement("Client is connected");
             lsHistory.setModel(model);
         } catch (IOException e) {
             model.addElement("Error connecting to server: " + e.getMessage());

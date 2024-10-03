@@ -1,4 +1,4 @@
-package com.alibou.websocket.config;
+package com.example.websocket.TCP;
 
 import java.awt.EventQueue;
 import java.io.DataInputStream;
